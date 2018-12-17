@@ -8,6 +8,9 @@ variables:
 
 before_script:
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+  - df -h
+  - docker system prune -a -f --volumes
+  - df -h
 
 build:
   stage: build
