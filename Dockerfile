@@ -6,7 +6,7 @@ RUN apk add --update vim wget alpine-sdk automake autoconf libtool libltdl flex 
 
 WORKDIR /opt
 
-RUN wget -q https://ftp.gnu.org/gnu/gnunet/gnurl-7.57.0.tar.bz2 -O gnurl.tar.bz2 && mkdir gnurl && tar xvf gnurl.tar.bz2 -C gnurl --strip-components 1 && cd gnurl && autoreconf -i && ./configure --prefix=/opt --disable-ntlm-wb --with-gnutls && make install && rm -rf /opt/gnurl*
+RUN wget -q https://ftp.gnu.org/gnu/gnunet/gnurl-7.62.0.tar.gz -O gnurl.tar.bz2 && mkdir gnurl && tar xvf gnurl.tar.bz2 -C gnurl --strip-components 1 && cd gnurl && autoreconf -i && ./configure --prefix=/opt --disable-ntlm-wb --with-gnutls && make install && rm -rf /opt/gnurl*
 
 RUN wget -q https://crypto.stanford.edu/pbc/files/pbc-0.5.14.tar.gz && tar xvzpf pbc-0.5.14.tar.gz && cd pbc-0.5.14 && ./configure --prefix=/opt && make install && rm -rf /opt/pbc*
 
