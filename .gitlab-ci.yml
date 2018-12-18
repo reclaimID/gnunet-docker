@@ -13,8 +13,7 @@ build:
   stage: build
   script:
     - docker pull $CONTAINER_IMAGE:experimental || true
-    - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_COMMIT_SHA --tag $CONTAINER_IMAGE:experimental .
-    - docker push $CONTAINER_IMAGE:$CI_COMMIT_SHA
+    - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:experimental .
     - docker push $CONTAINER_IMAGE:experimental
     - curl -X POST -F token=$RUNTIME_TRIGGER -F ref=master https://gitlab.com/api/v4/projects/9869101/trigger/pipeline
 
