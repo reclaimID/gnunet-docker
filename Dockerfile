@@ -14,7 +14,7 @@ RUN wget -q ftp://ftp.gnu.org/gnu/glpk/glpk-4.55.tar.gz && tar xzpf glpk-4.55.ta
 
 RUN cp -r /opt/* /usr
 
-RUN git clone git://gnunet.org/gnunet.git && cd gnunet && git checkout $GNUNET_REVISION && ./bootstrap && ./configure --help && ./configure --prefix=/opt --disable-documentation --with-microhttpd --with-extractor=/opt --with-libgnurl=/opt && make && make install && rm -rf /opt/gnunet/
+RUN git clone git@gnunet.org:gnunet.git && cd gnunet && git checkout $GNUNET_REVISION && ./bootstrap && ./configure --help && ./configure --prefix=/opt --disable-documentation --with-microhttpd --with-extractor=/opt --with-libgnurl=/opt && make && make install && rm -rf /opt/gnunet/
 
 FROM alpine:latest
 
