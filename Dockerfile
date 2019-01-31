@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-ARG GNUNET_REVISION=86a4cfa3852275ab2a286ffd112651c3ae609eea
+ARG GNUNET_REVISION=31a1df068442392cf7aa7ccd156ccd6c7a8716dd
 
 RUN apk add --update wget alpine-sdk automake autoconf libtool libltdl gmp-dev libgcrypt-dev glib-dev libunistring-dev libidn-dev linux-headers jansson-dev libmicrohttpd-dev gnutls-dev sqlite-dev libidn-dev && rm -rf /var/cache/apk/* /tmp/*
 
@@ -20,7 +20,7 @@ FROM alpine:latest
 
 WORKDIR /opt
 
-RUN apk add --update openssl libbz2 libtool libltdl libunistring libidn jansson libmicrohttpd gnutls sqlite-dev glib libgcrypt gmp && rm -rf /var/cache/apk/* /tmp/*
+RUN apk add --update ca-certificates openssl libbz2 libtool libltdl libunistring libidn jansson libmicrohttpd gnutls sqlite-dev glib libgcrypt gmp && update-ca-certificates && rm -rf /var/cache/apk/* /tmp/*
 
 EXPOSE 7777
 
