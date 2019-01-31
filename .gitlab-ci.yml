@@ -1,5 +1,11 @@
 image: docker:stable
 
+stages:
+  - pull
+  - build
+  - push
+  - trigger_reclaim
+
 services:
   - docker:dind
 
@@ -7,12 +13,20 @@ variables:
   CONTAINER_IMAGE: registry.gitlab.com/$CI_PROJECT_PATH
 
 before_script:
-  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+
+pull:
+  stage: pull
+  script:
+    - docker pull $CONTAINER_IMAGE:latest || true
 
 build:
   stage: build
   script:
-    - docker pull $CONTAINER_IMAGE:latest || true
     - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:latest .
+    
+push:
+  stage: push
+  script:
     - docker push $CONTAINER_IMAGE:latest
 
