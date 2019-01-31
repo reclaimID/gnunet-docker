@@ -24,7 +24,7 @@ FROM alpine:latest
 
 WORKDIR /opt
 
-RUN apk add --update openssl libbz2 libtool libltdl libunistring libidn jansson libmicrohttpd gnutls sqlite-dev glib libgcrypt gmp && rm -rf /var/cache/apk/* /tmp/*
+RUN apk add --update ca-certificates openssl libbz2 libtool libltdl libunistring libidn jansson libmicrohttpd gnutls sqlite-dev glib libgcrypt gmp && update-ca-certificates && rm -rf /var/cache/apk/* /tmp/*
 
 EXPOSE 7777
 
