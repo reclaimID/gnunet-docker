@@ -16,22 +16,11 @@ before_script:
     - apk add curl
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
 
-pull:
-  stage: pull
-  script:
-    - docker pull $CONTAINER_IMAGE:experimental || true
-
 build:
   stage: build
   script:
+    - docker pull $CONTAINER_IMAGE:experimental || true
     - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:experimental .
-    
-push:
-  stage: push
-  script:
     - docker push $CONTAINER_IMAGE:experimental
-
-trigger_reclaim:
-  stage: trigger_reclaim
-  script:
     - curl -X POST -F token=$RUNTIME_TRIGGER -F ref=master https://gitlab.com/api/v4/projects/9869101/trigger/pipeline
+
