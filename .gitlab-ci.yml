@@ -1,11 +1,5 @@
 image: docker:stable
 
-stages:
-  - pull
-  - build
-  - push
-  - trigger_reclaim
-
 services:
   - docker:dind
 
