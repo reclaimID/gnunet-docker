@@ -2,6 +2,7 @@ image: docker:stable
 
 stages:
     - build
+    - trigger_runtime
 
 services:
     - docker:dind
@@ -21,7 +22,7 @@ build:
         - docker push $CONTAINER_IMAGE:experimental
 
 trigger_runtime:
-    stage: build
+    stage: trigger_runtime
     script:
         - curl -X POST -F token=$RUNTIME_TRIGGER -F ref=master https://gitlab.com/api/v4/projects/9869101/trigger/pipeline
 
