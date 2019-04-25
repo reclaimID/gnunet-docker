@@ -1,16 +1,12 @@
 FROM alpine:latest
 
-ARG GNUNET_REVISION=5cee429d0ca67478c814b431ef15cd09d7a42b39
+ARG GNUNET_REVISION=c80fbc1a357fb68a1a13f088a9f7ce0795161a1f
 
-RUN apk add --update wget alpine-sdk automake autoconf libtool libltdl flex bison gmp-dev libgcrypt-dev glib-dev libunistring-dev libidn-dev linux-headers jansson-dev libmicrohttpd-dev gnutls-dev sqlite-dev libidn-dev && rm -rf /var/cache/apk/* /tmp/*
+RUN apk add --update wget alpine-sdk automake autoconf libtool libltdl gmp-dev libgcrypt-dev glib-dev libunistring-dev libidn-dev linux-headers jansson-dev libmicrohttpd-dev gnutls-dev sqlite-dev libidn-dev && rm -rf /var/cache/apk/* /tmp/*
 
 WORKDIR /opt
 
 RUN wget -q https://ftp.gnu.org/gnu/gnunet/gnurl-7.57.0.tar.bz2 -O gnurl.tar.bz2 && mkdir gnurl && tar xf gnurl.tar.bz2 -C gnurl --strip-components 1 && cd gnurl && autoreconf -i && ./configure --prefix=/opt --disable-ntlm-wb --with-gnutls && make install && rm -rf /opt/gnurl*
-
-RUN wget -q https://crypto.stanford.edu/pbc/files/pbc-0.5.14.tar.gz && tar xvzpf pbc-0.5.14.tar.gz && cd pbc-0.5.14 && ./configure --prefix=/opt && make install && rm -rf /opt/pbc*
-
-RUN git clone https://github.com/schanzen/libgabe.git && cd /opt/libgabe && ./configure --prefix=/opt --with-pbc-include=/opt/include --with-pbc-lib=/opt/lib && make install && rm -rf /opt/libgabe*
 
 RUN wget -q ftp://ftp.gnu.org/gnu/libextractor/libextractor-1.7.tar.gz && tar xvzpf libextractor-1.7.tar.gz && cd libextractor-1.7 && ./configure --prefix=/opt && make install && rm -rf /opt/libextractor*
 
