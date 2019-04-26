@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:edge
 
 ARG GNUNET_REVISION=ee0bcfa1b81cd7a5bed95991b24a23393f712409
 
