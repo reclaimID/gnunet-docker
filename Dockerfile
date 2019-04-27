@@ -6,17 +6,17 @@ RUN apk update && apk add --update wget alpine-sdk automake autoconf libtool lib
 
 WORKDIR /opt
 
-RUN wget -q https://ftp.gnu.org/gnu/gnunet/gnurl-7.57.0.tar.bz2 -O gnurl.tar.bz2 && mkdir gnurl && tar xf gnurl.tar.bz2 -C gnurl --strip-components 1 && cd gnurl && autoreconf -i && ./configure --prefix=/opt --disable-ntlm-wb --with-gnutls && make install && rm -rf /opt/gnurl*
+RUN wget -q https://ftp.gnu.org/gnu/gnunet/gnurl-7.64.0.tar.bz2 -O gnurl.tar.bz2 && mkdir gnurl && tar xf gnurl.tar.bz2 -C gnurl --strip-components 1 && cd gnurl && autoreconf -i && ./configure --prefix=/opt --disable-ntlm-wb --with-gnutls && make install && rm -rf /opt/gnurl*
 
-RUN wget -q ftp://ftp.gnu.org/gnu/libextractor/libextractor-1.7.tar.gz && tar xvzpf libextractor-1.7.tar.gz && cd libextractor-1.7 && ./configure --prefix=/opt && make install && rm -rf /opt/libextractor*
+RUN wget -q ftp://ftp.gnu.org/gnu/libextractor/libextractor-1.9.tar.gz && tar xvzpf libextractor-1.9.tar.gz && cd libextractor-1.9 && ./configure --prefix=/opt && make install && rm -rf /opt/libextractor*
 
-RUN wget -q ftp://ftp.gnu.org/gnu/glpk/glpk-4.55.tar.gz && tar xvzpf glpk-4.55.tar.gz && cd glpk-4.55 && ./configure --prefix=/opt && make install && rm -rf /opt/glpk-4.55*
+RUN wget -q ftp://ftp.gnu.org/gnu/glpk/glpk-4.65.tar.gz && tar xvzpf glpk-4.65.tar.gz && cd glpk-4.65 && ./configure --prefix=/opt && make install && rm -rf /opt/glpk-4.65*
 
 RUN cp -r /opt/* /usr
 
 RUN git clone https://gnunet.org/git/gnunet.git && cd gnunet && git checkout $GNUNET_REVISION && ./bootstrap && ./configure --help && ./configure --enable-logging=verbose --enable-experimental --prefix=/opt --disable-documentation --with-microhttpd --with-extractor=/opt --with-libgnurl=/opt && make && make install && rm -rf /opt/gnunet/
 
-FROM alpine:latest
+FROM alpine:alpine
 
 WORKDIR /opt
 
