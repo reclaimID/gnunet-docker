@@ -10,7 +10,7 @@ RUN wget -q https://ftp.gnu.org/gnu/gnunet/gnurl-7.64.0.tar.bz2 -O gnurl.tar.bz2
 
 RUN wget -q ftp://ftp.gnu.org/gnu/libextractor/libextractor-1.9.tar.gz && tar xzpf libextractor-1.9.tar.gz && cd libextractor-1.9 && ./configure --prefix=/opt && make install && rm -rf /opt/libextractor*
 
-RUN wget -q ftp://ftp.gnu.org/gnu/glpk/glpk-4.65.tar.gz && tar xzpf glpk-4.65.tar.gz && cd glpk-4.65 && ./configure --prefix=/opt && make install && rm -rf /opt/glpk-4.55*
+RUN wget -q ftp://ftp.gnu.org/gnu/glpk/glpk-4.65.tar.gz && tar xzpf glpk-4.65.tar.gz && cd glpk-4.65 && ./configure --prefix=/opt && make install && rm -rf /opt/glpk-4.65*
 
 RUN cp -r /opt/* /usr
 
