@@ -6,7 +6,7 @@ RUN apk update && apk add --update wget alpine-sdk automake autoconf libtool lib
 
 WORKDIR /opt
 
-RUN wget -q https://ftp.gnu.org/gnu/gnunet/gnurl-7.64.0.tar.bz2 -O gnurl.tar.bz2 && mkdir gnurl && tar xf gnurl.tar.bz2 -C gnurl --strip-components 1 && cd gnurl && autoreconf -i && ./configure --prefix=/opt --disable-ntlm-wb --with-gnutls && make install && rm -rf /opt/gnurl*
+RUN wget -q https://ftp.gnu.org/gnu/gnunet/gnurl-7.64.0.tar.gz -O gnurl.tar.gz && mkdir gnurl && tar xf gnurl.tar.gz -C gnurl --strip-components 1 && cd gnurl && autoreconf -i && ./configure --prefix=/opt --disable-ntlm-wb --with-gnutls && make install && rm -rf /opt/gnurl*
 
 RUN wget -q ftp://ftp.gnu.org/gnu/libextractor/libextractor-1.9.tar.gz && tar xvzpf libextractor-1.9.tar.gz && cd libextractor-1.9 && ./configure --prefix=/opt && make install && rm -rf /opt/libextractor*
 
