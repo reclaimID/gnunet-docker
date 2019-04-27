@@ -16,7 +16,7 @@ RUN cp -r /opt/* /usr
 
 RUN git clone https://gnunet.org/git/gnunet.git && cd gnunet && git checkout $GNUNET_REVISION && ./bootstrap && ./configure --help && ./configure --enable-logging=verbose --enable-experimental --prefix=/opt --disable-documentation --with-microhttpd --with-extractor=/opt --with-libgnurl=/opt && make && make install && rm -rf /opt/gnunet/
 
-FROM alpine:alpine
+FROM alpine:edge
 
 WORKDIR /opt
 
