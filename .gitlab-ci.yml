@@ -12,7 +12,7 @@ before_script:
 build:
   stage: build
   script:
-    - docker pull $CONTAINER_IMAGE:latest || true
-    - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:latest .
-    - docker push $CONTAINER_IMAGE:latest
+    - docker pull $CONTAINER_IMAGE:edge || true
+    - docker build --cache-from $CONTAINER_IMAGE:edge --tag $CONTAINER_IMAGE:edge .
+    - docker push $CONTAINER_IMAGE:edge
 
