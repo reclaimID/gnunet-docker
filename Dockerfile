@@ -1,7 +1,5 @@
 FROM alpine:edge
 
-ARG version
-
 RUN apk update && apk add --update wget alpine-sdk automake autoconf libtool libltdl gmp-dev libgcrypt-dev glib-dev libunistring-dev libidn-dev linux-headers jansson-dev libmicrohttpd-dev gnutls-dev sqlite-dev libidn-dev && rm -rf /var/cache/apk/* /tmp/*
 
 WORKDIR /opt
@@ -14,7 +12,7 @@ RUN wget -q ftp://ftp.gnu.org/gnu/glpk/glpk-4.65.tar.gz && tar xzpf glpk-4.65.ta
 
 RUN cp -r /opt/* /usr
 
-RUN git clone https://gnunet.org/git/gnunet.git && cd gnunet && git checkout $version && ./bootstrap && ./configure --help && ./configure --prefix=/opt --disable-documentation --with-microhttpd --with-extractor=/opt --with-libgnurl=/opt && make && make install && rm -rf /opt/gnunet/
+RUN git clone https://gnunet.org/git/gnunet.git && cd gnunet && ./bootstrap && ./configure --help && ./configure --prefix=/opt --disable-documentation --with-microhttpd --with-extractor=/opt --with-libgnurl=/opt && make && make install && rm -rf /opt/gnunet/
 
 FROM alpine:edge
 
