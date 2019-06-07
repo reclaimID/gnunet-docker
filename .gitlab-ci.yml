@@ -1,5 +1,9 @@
 image: docker:stable
 
+stages:
+  - build
+  - trigger_runtime
+
 services:
   - docker:dind
 
