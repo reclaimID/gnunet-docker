@@ -6,7 +6,7 @@ RUN apk update && apk add --update wget alpine-sdk automake autoconf libtool lib
 
 WORKDIR /opt
 
-RUN wget -q https://ftp.gnu.org/gnu/gnunet/gnurl-7.64.0.tar.gz -O gnurl.tar.gz && mkdir gnurl && tar xf gnurl.tar.gz -C gnurl --strip-components 1 && cd gnurl && autoreconf -i && ./configure --prefix=/opt --disable-ntlm-wb --with-gnutls && make install && rm -rf /opt/gnurl*
+RUN wget -q https://ftp.gnu.org/gnu/gnunet/gnurl-7.65.1.tar.gz -O gnurl.tar.gz && mkdir gnurl && tar xf gnurl.tar.gz -C gnurl --strip-components 1 && cd gnurl && autoreconf -i & ./configure --prefix=/opt --enable-ipv6 --with-gnutls --without-libssh2 --without-libmetalink --without-winidn --without-librtmp --without-nghttp2 --without-nss --without-cyassl --without-polarssl --without-ssl --without-winssl --without-libpsl --without-darwinssl --disable-sspi --disable-ntlm-wb --disable-ldap --disable-rtsp --disable-dict --disable-telnet --disable-tftp --disable-pop3 --disable-imap --disable-smtp --disable-gopher --disable-file --disable-ftp --disable-smb --disable-ares && make install && rm -rf /opt/gnurl*
 
 RUN wget -q ftp://ftp.gnu.org/gnu/libextractor/libextractor-1.9.tar.gz && tar xzpf libextractor-1.9.tar.gz && cd libextractor-1.9 && ./configure --prefix=/opt && make install && rm -rf /opt/libextractor*
 
