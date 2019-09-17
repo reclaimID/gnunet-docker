@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-ARG GNUNET_REVISION=74c328220897196de3d93710e74666230a57cfee
+ARG GNUNET_REVISION=97164b43a8b69cc1bf07c3384586f58c99873ce8
 
 RUN apk update && apk add --update wget alpine-sdk automake autoconf libtool libltdl gmp-dev libgcrypt-dev glib-dev libunistring-dev libidn-dev linux-headers jansson-dev libmicrohttpd-dev gnutls-dev sqlite-dev libidn-dev xz && rm -rf /var/cache/apk/* /tmp/*
 
