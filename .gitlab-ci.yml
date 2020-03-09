@@ -3,7 +3,7 @@ image: docker:stable
 stages:
   - build
   - trigger_runtime
-  - trigger_dockerhub
+#  - trigger_dockerhub
 
 services:
   - docker:dind
@@ -21,13 +21,13 @@ build:
     - docker pull $CONTAINER_IMAGE:latest || true
     - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:latest .
     - docker push $CONTAINER_IMAGE:latest
-    
+
 trigger_runtime:
   stage: trigger_runtime
   script:
     - curl -X POST -F token=$RUNTIME_TRIGGER -F ref=master https://gitlab.com/api/v4/projects/9869101/trigger/pipeline
 
-trigger_dockerhub:
-  stage: trigger_dockerhub
-  script:
-    - curl -X POST $DOCKERHUB_TRIGGER
+#trigger_dockerhub:
+#  stage: trigger_dockerhub
+#  script:
+#    - curl -X POST $DOCKERHUB_TRIGGER
