@@ -2,7 +2,7 @@ FROM alpine:edge
 
 ARG GNUNET_REVISION=e5252075686cc57d946dc3feb141fb4d44e32054
 
-RUN apk update && apk add --update wget alpine-sdk automake autoconf libtool libltdl gmp-dev libgcrypt-dev glib-dev libunistring-dev libidn-dev linux-headers jansson-dev libmicrohttpd-dev gnutls-dev sqlite-dev libidn-dev xz && rm -rf /var/cache/apk/* /tmp/*
+RUN apk update && apk add --update wget alpine-sdk automake autoconf libtool libltdl gmp-dev libgcrypt-dev glib-dev libunistring-dev libidn-dev linux-headers jansson-dev libmicrohttpd-dev gnutls-dev sqlite-dev libidn-dev xz libargon2-dev libsodium-dev && rm -rf /var/cache/apk/* /tmp/*
 
 WORKDIR /opt
 
@@ -19,7 +19,7 @@ FROM alpine:edge
 
 WORKDIR /opt
 
-RUN apk add --update ca-certificates openssl libbz2 libtool libltdl libunistring libidn jansson libmicrohttpd gnutls sqlite-dev glib libgcrypt gmp && update-ca-certificates && rm -rf /var/cache/apk/* /tmp/*
+RUN apk add --update ca-certificates openssl libbz2 libtool libltdl libunistring libidn jansson libmicrohttpd gnutls sqlite-dev glib libgcrypt gmp libargon2 libsodium && update-ca-certificates && rm -rf /var/cache/apk/* /tmp/*
 
 EXPOSE 7777
 
